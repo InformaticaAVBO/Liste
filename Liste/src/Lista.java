@@ -7,10 +7,17 @@ public class Lista {
         root = null;
     }
     
-    public void addHead( Nodo n ) {
-        
+    public void add( String s ) {
+        Nodo n = new Nodo(s);
+        addTail(n);
     }
-    
+
+    public void addHead( Nodo n ) {
+        Nodo tmp = root;
+        root = n;
+        n.setNext(tmp);
+    }
+
     public void addTail( Nodo n ) {
         if (root==null) {
             root = n;
@@ -20,7 +27,16 @@ public class Lista {
             temp.setNext(n);
         }
     }
-    
+
+    public void remove( String s ) {
+
+    }
+
+    public boolean exists( String s ) {
+        return true;
+    }
+
+
     public String toString() {
         String s = "La lista contiene: ";
         Nodo temp = root;
