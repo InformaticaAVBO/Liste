@@ -6,7 +6,21 @@ public class Lista {
     public Lista() {
         root = null;
     }
-    
+
+    public boolean isEmpty() {
+        return root==null;
+    }
+
+    public int getLength() {
+        Nodo tmp = root;
+        int l = 0;
+        while (tmp!=null) {
+            l++;
+            tmp = tmp.getNext();
+        }
+        return l;
+    }
+
     public void add( String s ) {
         Nodo n = new Nodo(s);
         addTail(n);
@@ -28,14 +42,39 @@ public class Lista {
         }
     }
 
-    public void remove( String s ) {
-
+    public boolean remove( String s ) {
+        if (root==null) return false;
+        if (root.getValue().equals(s)) {
+            root = root.getNext();
+            return true;
+        }
+        Nodo tmp=root, succ=root.getNext();
+        while (succ!=null) {
+            if (succ.getValue().equals(s)) {
+                tmp.setNext(succ.getNext());
+                return true;
+            }
+            tmp=succ;
+            succ=succ.getNext();
+        } 
+        return false;
     }
 
     public boolean exists( String s ) {
-        return true;
+        Nodo tmp = root;
+        while (tmp!=null) {
+            if (tmp.getValue().equals(s)) return true;
+        }
+        return false;
     }
 
+    public Nodo find( String s ) {
+        Nodo tmp = root;
+        while (tmp!=null) {
+            if (tmp.getValue().equals(s)) return tmp;
+        }
+        return null;
+    }
 
     public String toString() {
         String s = "La lista contiene: ";
